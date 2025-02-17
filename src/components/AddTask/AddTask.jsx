@@ -12,17 +12,28 @@ function AddTask({ onAddTaskSubmit }) {
         type="text"
         placeholder="Title..."
         value={title}
-        onChange={(event)=> setTitle(event.target.value)}
+        onChange={(event) => setTitle(event.target.value)}
       />
       <input
         className="bg-slate-50 p-2 rounded-md outline-slate-500"
         type="text"
         placeholder="Description..."
         value={description}
-        onChange={(event) => setDescription(event.target.description)}
+        onChange={(event) => setDescription(event.target.value)}
       />
 
-      <button onClick={onAddTaskSubmit(title, description)} className="bg-slate-500 text-white p-2 rounded-md">
+      <button
+        onClick={() => {
+          if (!title.trim() || !description.trim()) {
+            return alert("Fill all the boxes");
+          }
+
+          onAddTaskSubmit(title, description);
+          setTitle("");
+          setDescription("");
+        }}
+        className="bg-slate-500 text-white p-2 rounded-md"
+      >
         Add Task
       </button>
     </div>

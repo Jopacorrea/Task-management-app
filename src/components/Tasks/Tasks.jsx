@@ -17,7 +17,7 @@ function Tasks({ tasks, onTaskClick, onDeleteTaskClick }) {
                   tasks.isCompleted && "line-through"
                 } `}
               >
-                {tasks.description}
+                {tasks.title}
               </button>
             </li>
             <button className="bg-slate-400 text-white p-2 rounded-md ">
