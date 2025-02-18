@@ -1,40 +1,18 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Tasks from "./components/Tasks/Tasks.jsx";
 import AddTask from "./components/AddTask/AddTask.jsx";
 import TaskDetails from "./components/Pages/TaskDetails.jsx";
 import "./App.css";
 
 function App() {
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: "study",
-      description: "Study React",
-      isCompleted: false,
-    },
+  const [tasks, setTasks] = useState(
+    JSON.parse(localStorage.getItem("tasks")) || []
+  );
 
-    {
-      id: 2,
-      title: "study API Spotify",
-      description: "Capstone project ",
-      isCompleted: false,
-    },
-
-    {
-      id: 3,
-      title: "Study API apple musiic",
-      description: "Capstone project ",
-      isCompleted: false,
-    },
-
-    {
-      id: 4,
-      title: "clean home",
-      description: "office and bedroom ",
-      isCompleted: false,
-    },
-  ]);
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   function onTaskClick(taskID) {
     const newTasks = tasks.map((task) => {
