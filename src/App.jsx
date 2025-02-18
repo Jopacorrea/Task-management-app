@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { useEffect, useState } from "react";
 import Tasks from "./components/Tasks/Tasks.jsx";
 import AddTask from "./components/AddTask/AddTask.jsx";
@@ -73,6 +74,7 @@ function App() {
             </>
           }
         ></Route>
+        <SpeedInsights />
       </Routes>
     </BrowserRouter>
   );
