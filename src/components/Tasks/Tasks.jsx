@@ -1,30 +1,35 @@
-import { ChevronRightIcon, DeleteIcon, Trash2Icon } from "lucide-react";
+import { ChevronRightIcon, Trash2Icon } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function Tasks({ tasks, onTaskClick, onDeleteTaskClick }) {
-  //console.log(tasks);
   return (
     <div>
       <ul className="space-y-4 p-6 bg-slate-200 shadow rounded-md">
-        {tasks.map((tasks) => (
-          <div key={tasks.id} className="flex gap-2">
-            <li
-              key={tasks.id}
-              className="bg-slate-400 text-white rounded-md w-full"
-            >
+        {tasks.map((task) => (
+          <div key={task.id} className="flex gap-2">
+            <li className="bg-slate-400 text-white rounded-md w-full">
               <button
-                onClick={() => onTaskClick(tasks.id)}
+                onClick={() => onTaskClick(task.id)}
                 className={`bg-slate-400 text-white p-2 w-full text-left rounded-md ${
-                  tasks.isCompleted && "line-through"
-                } `}
+                  task.isCompleted && "line-through"
+                }`}
               >
-                {tasks.title}
+                {task.title}
               </button>
             </li>
-            <button className="bg-slate-400 text-white p-2 rounded-md ">
-              <ChevronRightIcon />
-            </button>
+            {/* Link with properly encoded query parameters */}
+            <Link
+              to={`/details?title=${encodeURIComponent(task.title)}&description=${encodeURIComponent(task.description)}`}
+            >
+              <button className="bg-slate-400 text-white p-2 rounded-md">
+                <ChevronRightIcon />
+              </button>
+            </Link>
 
-            <button onClick={()=> onDeleteTaskClick(tasks.id)} className="bg-slate-400 text-white p-2 rounded-md ">
+            <button
+              onClick={() => onDeleteTaskClick(task.id)}
+              className="bg-slate-400 text-white p-2 rounded-md"
+            >
               <Trash2Icon />
             </button>
           </div>

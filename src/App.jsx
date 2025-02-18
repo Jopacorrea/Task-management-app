@@ -1,8 +1,9 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Tasks from "./components/Tasks/Tasks.jsx";
 import AddTask from "./components/AddTask/AddTask.jsx";
+import TaskDetails from "./components/Pages/TaskDetails.jsx";
 import "./App.css";
-import { FunctionSquare } from "lucide-react";
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -64,19 +65,38 @@ function App() {
   }
 
   return (
-    <div className="w-screen h-screen bg-slate-500 flex justify-center p-6 ">
-      <div className="w-[500px] space-y-4">
-        <h1 className="text-3xl text-slate-100 font-bold text-center p-4">
-          Task Management
-        </h1>
-        <AddTask onAddTaskSubmit={onAddTaskSubmit} />
-        <Tasks
-          tasks={tasks}
-          onTaskClick={onTaskClick}
-          onDeleteTaskClick={onDeleteTaskClick}
-        />
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <div className="w-screen h-screen bg-slate-500 flex justify-center p-6 ">
+                <div className="w-[500px] space-y-4">
+                  <h1 className="text-3xl text-slate-100 font-bold text-center p-4">
+                    Task Management
+                  </h1>
+                  <AddTask onAddTaskSubmit={onAddTaskSubmit} />
+                  <Tasks
+                    tasks={tasks}
+                    onTaskClick={onTaskClick}
+                    onDeleteTaskClick={onDeleteTaskClick}
+                  />
+                </div>
+              </div>
+            </>
+          }
+        ></Route>
+        <Route
+          path="/details"
+          element={
+            <>
+              <TaskDetails tasks={tasks} />
+            </>
+          }
+        ></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
