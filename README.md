@@ -7,3 +7,5 @@ App designed to review basic React contents:
 - LocalStorage
 
 And applying Tailwind principles to stylish.
+
+Deployed here: https://task-management-app-pink-seven.vercel.app/
