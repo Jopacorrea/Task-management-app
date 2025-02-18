@@ -26,7 +26,7 @@ function TaskDetails({ tasks }) {
 
   return (
     <div className="h-screen w-screen bg-slate-500 p-6 space-y-4">
-      <div className="w-full flex">
+      <div className="w-full flex mx-auto">
         <button
           onClick={() => {
             navigate(-1);

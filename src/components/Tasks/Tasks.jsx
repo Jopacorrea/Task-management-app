@@ -1,4 +1,4 @@
-import { ChevronRightIcon, Trash2Icon } from "lucide-react";
+import { CheckIcon, ChevronRightIcon, Trash2Icon } from "lucide-react";
 import { Link } from "react-router-dom";
 
 function Tasks({ tasks, onTaskClick, onDeleteTaskClick }) {
@@ -19,7 +19,9 @@ function Tasks({ tasks, onTaskClick, onDeleteTaskClick }) {
             </li>
             {/* Link with properly encoded query parameters */}
             <Link
-              to={`/details?title=${encodeURIComponent(task.title)}&description=${encodeURIComponent(task.description)}`}
+              to={`/details?title=${encodeURIComponent(
+                task.title
+              )}&description=${encodeURIComponent(task.description)}`}
             >
               <button className="bg-slate-400 text-white p-2 rounded-md">
                 <ChevronRightIcon />
